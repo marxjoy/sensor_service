@@ -1,0 +1,6 @@
+Flask
+Flask-HTTPAuth
+python-dotenv
+Flask-SQLAlchemy
+dash
+plotly

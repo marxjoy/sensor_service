@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Measurements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sensor Measurements</h1>
+
+    <!-- Formularz do filtrowania danych -->
+    <form method="POST">
+        <label for="sensor_id">Sensor ID:</label>
+        <input type="text" id="sensor_id" name="sensor_id" value="{{ sensor_id_filter }}">
+
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key" value="{{ key_filter }}">
+
+        <button type="submit">Filter</button>
+    </form>
+
+    <!-- Tabela z wynikami -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Sensor ID</th>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for measurement in measurements %}
+                <tr>
+                    <td>{{ measurement.id }}</td>
+                    <td>{{ measurement.sensor_id }}</td>
+                    <td>{{ measurement.key }}</td>
+                    <td>{{ measurement.value }}</td>
+                    <td>{{ measurement.timestamp }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No measurements found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
